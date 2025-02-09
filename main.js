@@ -38,6 +38,7 @@ async function installDependencies(terminal) {
   installProcess.output.pipeTo(
     new WritableStream({
       write(data) {
+        console.log(data);
         terminal.write(data);
       },
     }),
