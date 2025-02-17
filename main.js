@@ -94,7 +94,6 @@ document.querySelector("#app").innerHTML = `
   </div>
   <div class="terminal"></div>
 `;
-
 const iframeEl = document.querySelector("iframe");
 const textareaEl = document.querySelector("textarea");
 const terminalEl = document.querySelector(".terminal");
