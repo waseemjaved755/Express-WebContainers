@@ -1,105 +1,124 @@
+/* Reset default styles */
 * {
   box-sizing: border-box;
-}
-
-:root {
-  font-family:
-    Inter,
-    system-ui,
-    Segoe UI,
-    Roboto,
-    Helvetica Neue,
-    sans-serif;
-  color: #222;
-  background: #f4f4f4;
-}
-
-body {
-  margin: 1rem;
+  margin: 0;
   padding: 0;
-}
-
-header {
-  text-align: center;
-}
-
-header h1 {
-  margin-bottom: 0;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #6c18a6;
-}
-
-header p {
-  font-size: 1.2rem;
-  margin-top: 5px;
-  color: #444;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  height: auto;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Styled text area */
-textarea {
-  width: 100%;
-  height: 22rem;
-  resize: none;
-  background: #1e1e1e;
-  color: #f8f8f8;
-  padding: 1rem;
-  font-size: 0.95rem;
-  line-height: 1.4rem;
   font-family: "Fira Code", monospace;
-  border: 2px solid #555;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Styled iframe (Preview Window) */
-iframe {
-  height: 22rem;
+/* Full Page Centered Layout */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Wrapper for All Components */
+.main-wrapper {
+  width: 85vw; /* Slightly expanded */
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Editor + Preview Container */
+.container {
+  display: flex;
+  flex-grow: 1;
+  gap: 1rem;
+  height: 70vh;
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+/* Shared Neon Glow for Sections */
+.editor, .preview, .terminal {
+  flex: 1;
+  border-radius: 12px;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Smooth Hover Effect */
+.editor:hover, .preview:hover, .terminal:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* Code Editor */
+.editor {
+  background: rgba(20, 20, 20, 0.9);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  flex-grow: 1;
   width: 100%;
-  border: solid 2px #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  color: #f8f8f8;
+  border: none;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
 }
 
-/* Text Gradient Effect */
-.wc {
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-image: linear-gradient(
-    to right,
-    #761fac 0,
-    #8a19a9 20%,
-    #d900a5 70%,
-    #d917a3 100%
-  );
-  filter: drop-shadow(0 1px 0 #fff);
-  font-weight: 800;
-  text-decoration: underline;
-  font-size: 1.5rem;
+/* Preview Box */
+.preview {
+  background: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  display: flex;
 }
 
-.docs {
-  margin-left: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  color: #555;
-  font-size: 90%;
-  text-decoration: underline;
+iframe {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
 }
 
-/* Hover effect for docs */
-.docs:hover {
-  color: #222;
-  text-decoration: none;
+/* Terminal (Fixes Double Border Issue) */
+.terminal {
+  height: 20vh;
+  background: rgba(0, 0, 0, 0.85);
+  color: #0f0;
+  padding: 0.5rem; /* Reduced padding */
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px #0f0;
+  backdrop-filter: blur(12px);
+  box-shadow: none; /* ✅ Removed extra outer shadow */
+  overflow: hidden; /* ✅ Fixes double scrollbar issue */
+}
+
+/* Fix extra spacing inside the xterm.js container */
+.terminal .xterm {
+  padding: 0; /* ✅ Removes extra padding */
+  border: none; /* ✅ Ensures no extra border */
+}
+
+/* Fix scrollbar inside xterm.js */
+.terminal .xterm-viewport::-webkit-scrollbar {
+  width: 5px;
+}
+
+.terminal .xterm-viewport::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 0, 0.6);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+/* Remove body scrollbar */
+body::-webkit-scrollbar {
+  display: none;
 }
